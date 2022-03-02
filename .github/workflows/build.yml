@@ -1,0 +1,21 @@
+name: publish
+on: [push]
+
+jobs:
+  build-soup-image:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.CR_PAT }}
+
+    - name: Build the Soup Docker image
+      run: |
+        docker build . --tag ghcr.io/delxhq/EternalJukebox:latest
+        docker push ghcr.io/delxhq/EternalJukebox:latest
