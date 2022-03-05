@@ -6,7 +6,7 @@ WORKDIR /EternalJukebox
 RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp \
     && chmod a+rx /usr/local/bin/yt-dlp \
     && apt-get update \
-    && apt-get install ffmpeg gettext python3 -y \
+    && apt-get install ffmpeg gettext python python3 -y \
     && apt-get clean \
     && touch hikari.properties
 
